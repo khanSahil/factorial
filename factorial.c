@@ -9,18 +9,28 @@ unsigned long long factorial(int n) {
     return n * factorial(n - 1);
 }
 
+int usage(void) {
+    printf("\nUsage\n");
+    printf("============================\n");
+    printf("factorial <positive-integer>\n");
+    printf("============================\n");
+    return(0);
+}
+
 int main(int argc, char *argv[]) {  
-
+    if(argc<=1) {
+        printf("ERROR: No argument found...\n");
+        usage();
+        exit(1);
+     }
     int num;
-
-    printf("Enter the number to find the factorial: ");
-    scanf("%d", &num);
-
-    if (num < 0)
+    num = atoi(argv[1]);
+    if (num < 0) {
         printf("Factorial of negative numbers is not defined.\n");
+        usage();
+    }
     else
         printf("Factorial of %d is %llu.\n", num, factorial(num));
 
     return 0;
 }
-
